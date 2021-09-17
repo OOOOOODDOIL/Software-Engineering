@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define M 20000
 
 typedef struct
 {
@@ -8,14 +7,68 @@ typedef struct
     int count;//记录单词出现次数
 }sq;
 
+void initialize_fsm(char fsm[7][256]);
+void Delete()//去除注释
+{
+    int cha, temp = 0;
+    int state = 0;
+    char fsm[7][256];
+    FILE *pfin;
+    if((pfin = fopen("D://c++//ex.c", "r"))==NULL)
+    {
+        printf("cannnot open the file");
+        exit(0);
+    }
+    FILE *pfout;
+    pfout=fopen("D://c++//result.txt", "w");
+    initialize_fsm(fsm);
+    while((cha = fgetc(pfin)) != EOF)
+    {
+        state = fsm[state][cha];
+        temp = cha;
+        switch(state)
+        {
+            case 5:
+            case 6:
+            case 0:
+            fputc(cha, pfout);
+            break;
+            case 7:
+            state = 0;
+            break;
+        }
+    }
+}
+void initialize_fsm(char fsm[7][256])
+{
+    int lenth = sizeof(char) * 256;
+    memset(fsm[0], 0, lenth);
+    memset(fsm[1], 0, lenth);
+    memset(fsm[2], 2, lenth);
+    memset(fsm[3], 3, lenth);
+    memset(fsm[4], 3, lenth);
+    memset(fsm[5], 5, lenth);
+    memset(fsm[6], 5, lenth);
+    fsm[0]['"'] = 5;
+    fsm[0]['/'] = 1;
+    fsm[1]['/'] = 2;
+    fsm[1]['*'] = 3;
+    fsm[2]['\n'] = 7;
+    fsm[3]['*'] = 4;
+    fsm[4]['/'] = 7;
+    fsm[5]['\\'] = 6;
+    fsm[5]['"'] = 0;
+}
+
 int main()
 {
-    sq word[M];
+    Delete();
+    sq word[32];
     sq t_word;
     int K,n=0,i,j;
     FILE *fp;
     char ch;
-    fp=fopen("D://c++//ex.c","r");//读取文件，需改为你要读取的文件的绝对路径
+    fp=fopen("D://c++//result.txt","r");//读取文件
     while(!feof(fp))//feof()检测是否达到文件尾部
     {
         ch=getc(fp);//获取当前字符
