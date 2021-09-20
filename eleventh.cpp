@@ -1,9 +1,9 @@
-// 2021-2022Çï¼¾Ñ§ÆÚÈí¹¤Êµ¼ùµÚÒ»´Î¸öÈË±à³Ì×÷Òµ
-// Ä¿±ê£ºÊµÏÖÒ»¸ö³ÌĞò¹¦ÄÜ£¬Ëü¿ÉÒÔ¶Ô¶ÁÈëµÄC»òC++´úÂëÎÄ¼ş½øĞĞ²»Í¬µÈ¼¶µÄ¹Ø¼ü×ÖÌáÈ¡
-// »ù´¡ÒªÇó£ºÊä³ö¹Ø¼ü×ÖÍ³¼ÆĞÅÏ¢
-// ½ø½×ÒªÇó£ºÊä³öÓĞ¼¸×éswitch case½á¹¹£¬Í¬Ê±Êä³öÃ¿×é¶ÔÓ¦µÄcase¸öÊı
-// °Î¸ßÒªÇó£ºÊä³öÓĞ¼¸×éif else½á¹¹
-// ÖÕ¼«ÒªÇó£ºÊä³öÓĞ¼¸×éif£¬else if£¬else½á¹¹
+// 2021-2022ç§‹å­£å­¦æœŸè½¯å·¥å®è·µç¬¬ä¸€æ¬¡ä¸ªäººç¼–ç¨‹ä½œä¸š
+// ç›®æ ‡ï¼šå®ç°ä¸€ä¸ªç¨‹åºåŠŸèƒ½ï¼Œå®ƒå¯ä»¥å¯¹è¯»å…¥çš„Cæˆ–C++ä»£ç æ–‡ä»¶è¿›è¡Œä¸åŒç­‰çº§çš„å…³é”®å­—æå–
+// åŸºç¡€è¦æ±‚ï¼šè¾“å‡ºå…³é”®å­—ç»Ÿè®¡ä¿¡æ¯
+// è¿›é˜¶è¦æ±‚ï¼šè¾“å‡ºæœ‰å‡ ç»„switch caseç»“æ„ï¼ŒåŒæ—¶è¾“å‡ºæ¯ç»„å¯¹åº”çš„caseä¸ªæ•°
+// æ‹”é«˜è¦æ±‚ï¼šè¾“å‡ºæœ‰å‡ ç»„if elseç»“æ„
+// ç»ˆæè¦æ±‚ï¼šè¾“å‡ºæœ‰å‡ ç»„ifï¼Œelse ifï¼Œelseç»“æ„
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -15,7 +15,7 @@ class CodeTest
     public:
         CodeTest(){}
         void Devide();
-        void allcount(string str);
+        void Allcount(string str);
         void print(int level);
         void Delete(char fsm[7][256]);
     private:
@@ -27,7 +27,7 @@ class CodeTest
         stack <int> ifelse_stack;
 };
 
-void CodeTest::allcount(string str)
+void CodeTest::Allcount(string str)
 {
 	if (str == "auto" || str == "break" || str == "case" || str == "char"
     || str == "const" || str == "continue" || str == "default" || str == "do"
@@ -61,7 +61,7 @@ void CodeTest::allcount(string str)
         {
             flag2 = 0;
             flag3 = 0;
-            while (ch == ' ' || ch == 10)  // Ìø¹ı¿Õ¸ñºÍ»»ĞĞ·û
+            while (ch == ' ' || ch == 10)  // è·³è¿‡ç©ºæ ¼å’Œæ¢è¡Œç¬¦
             {
                 ch = fgetc(pfin);
             }
@@ -171,7 +171,7 @@ void CodeTest::Devide()
             case 5:
             case 6:
             case 0:
-            if (ch == '"')  // ºöÂÔË«ÒıºÅ
+            if (ch == '"')  // å¿½ç•¥åŒå¼•å·
             {
                 ch = fgetc(pfin);
                 while (ch != '"')
@@ -180,7 +180,7 @@ void CodeTest::Devide()
                 }
                 continue;
             }
-            if (ch == 39)  // ºöÂÔµ¥ÒıºÅ
+            if (ch == 39)  // å¿½ç•¥å•å¼•å·
             {
                 ch = fgetc(pfin);
                 while (ch != 39)
@@ -189,7 +189,7 @@ void CodeTest::Devide()
                 }
                 continue;
             }
-            if (ch == ' ' || ch == 10)  // ºöÂÔ¿Õ¸ñºÍ»»ĞĞ·û
+            if (ch == ' ' || ch == 10)  // å¿½ç•¥ç©ºæ ¼å’Œæ¢è¡Œç¬¦
             {
                 continue;
             }
@@ -205,7 +205,7 @@ void CodeTest::Devide()
                 }
                 ifelse_stack.pop();
             }
-            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))  // ·¢ÏÖÒ»¸öµ¥´Ê
+            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))  // å‘ç°ä¸€ä¸ªå•è¯
             {
                 danci = "";
                 while ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')
@@ -213,12 +213,12 @@ void CodeTest::Devide()
                 {
                     if (ch >= 'A' && ch <= 'Z')
                     {
-                        ch += 32;  // ×ª»»³ÉĞ¡Ğ´
+                        ch += 32;  // è½¬æ¢æˆå°å†™
                     }
-                    danci += ch;  // °Ñµ±Ç°×ÖÄ¸´æÈë¸Ãµ¥´ÊµÄÊı×é
+                    danci += ch;  // æŠŠå½“å‰å­—æ¯å­˜å…¥è¯¥å•è¯çš„æ•°ç»„
                     ch = fgetc(pfin);
-                }  // Ò»¸öµ¥´Ê½áÊø
-                allcount(danci);
+                }  // ä¸€ä¸ªå•è¯ç»“æŸ
+                Allcount(danci);
             }
             case 7:
             state = 0;
@@ -232,13 +232,13 @@ int main()
     CodeTest *t = new CodeTest();
     int level;
     char filename[100];
-    cout<<"Â·¾¶£º";
+    cout<<"è·¯å¾„ï¼š";
     gets(filename);
-    cout<<"µÈ¼¶£º";
+    cout<<"ç­‰çº§ï¼š";
     cin>>level;
     if ((pfin=fopen(filename,"r"))==NULL)
     {
-        cout << "ÎÄ¼ş´ò¿ª´íÎó";
+        cout << "æ–‡ä»¶æ‰“å¼€é”™è¯¯";
         return 0;
     }
     t->Delete(fsm);
